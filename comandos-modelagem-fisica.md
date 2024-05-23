@@ -41,7 +41,7 @@ CREATE TABLE noticias(
 Utilizamos uma `constraint` (restrição) para criar a relação entre as tabelas através das chaves **prímaria** e **estrangeira**.
 
 ```sql
-CREATE TABLE noticias
+ALTER TABLE noticias
     ADD CONSTRAINT fk_noticias_usuarios
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id);
 
