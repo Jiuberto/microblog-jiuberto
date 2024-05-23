@@ -13,5 +13,11 @@ CREATE DATABASE micriblog_jiuberto CHARACTER SET utf8mb4;
 ### Criar tabela de usuários
 
 ```sql
-CREATE TABLE usuarios();
+CREATE TABLE usuarios(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    tipo ENUM('admin','editor') NOT NULL
+);
 ```
