@@ -7,5 +7,11 @@ Implantar o banco de dados no servidor/back-end
 ### Criar o banco de dados
 
 ```sql
-CREATE DATABASE microblog_jiuberto CHARACTER SET utf8mb4;
+CREATE DATABASE micriblog_jiuberto CHARACTER SET utf8mb4;
+```
+
+### Criar tabela de usuários
+
+```sql
+CREATE TABLE usuarios();
 ```
