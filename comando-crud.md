@@ -15,3 +15,13 @@
 INSERT INTO usuarios(nome, email, senha, tipo)
 VALUES('Jiuberto', 'jiub@gmail.com', '123senac', 'admin');
 ```
+
+```sql
+INSERT INTO usuarios(nome, email, senha, tipo)
+VALUES('Anakim', 'sky@gmail.com', '123segnac', 'editor');
+```
+
+```sql
+INSERT INTO usuarios(nome, email, senha, tipo)
+VALUES('Aragorn', 'gondor@gmail.com', '12segnac', 'editor');
+```
