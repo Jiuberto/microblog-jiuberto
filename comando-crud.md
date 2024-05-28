@@ -39,3 +39,34 @@ SELECT nome, email FROM usuarios WHERE tipo = 'admin';
 ```sql
 SELECT * FROM usuarios WHERE id > 1;
 ```
+
+### UPDATE na tabela de usuários
+
+```sql
+UPDATE usuarios SET tipo = 'editor'
+WHERE id = 1;
+```
+
+<!-- Obs: nunca esquece de passar, pwelo menos, ua condição para o UPDATE -->
+
+### Delete na tabela de usuários
+
+```sql
+DELETE FROM usuarios WHERE id = 2;
+
+-- OBS: NUNCA esqueça de passar pelo menos uma condição para o DELETE!
+```
+
+```sql
+INSERT INTO usuarios(nome, email, senha, tipo)
+VALUES('Jiu', 'jb1@gmail.com', '123senac', 'admin');
+```
+
+```sql
+INSERT INTO usuarios(nome, email, senha, tipo)
+VALUES('Edmundo', 'ED@gmail.com', '123senac', 'editor');
+```
+
+```sql
+SELECT nome, tipo, id FROM usuarios;
+```
