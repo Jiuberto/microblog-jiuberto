@@ -13,9 +13,9 @@ mysqli_set_charset($conexao, "utf8");
 
 /* Fazendo um teste de conexão */
 // ! testa conexão
-if ( !$conexao ) {
+/* if ( !$conexao ) {
     // Deu problema? "Mate/pare" a aplicação!
     die("Deu ruim: " .mysqli_connect_error());
 } else {
     echo "Conect";
-}
+} */
