@@ -41,3 +41,14 @@ function atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo){
 
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
+
+function excluirUsuario($conexao, $id){
+  
+    
+      // Monta a consulta SQL para excluir o usuário
+      $sql = "DELETE FROM usuarios WHERE id = $id";
+    
+      // Executa a consulta no banco de dados
+      mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    
+}
