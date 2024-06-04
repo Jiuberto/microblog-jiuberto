@@ -5,7 +5,7 @@ require_once "../inc/funcoes-usuarios.php";
 //Chamando a função que carrega/lista/le os usuários
 $listaDeUsuarios = lerUsuarios($conexao);
 ?>
-<pre><?=var_dump($listaDeUsuarios)?></pre>
+
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
@@ -33,7 +33,7 @@ $listaDeUsuarios = lerUsuarios($conexao);
 				</thead>
 
 				<tbody>
-
+<?php foreach($listaDeUsuarios as $usuario) {?> <!-- coloca a qunatidade de calunas conrrespondente ao numero de usuarios -->
 					<tr>
 						<td> Nome... </td>
 						<td> E-mail... </td>
@@ -50,7 +50,7 @@ $listaDeUsuarios = lerUsuarios($conexao);
 							</a>
 						</td>
 					</tr>
-
+<?php }?>
 				</tbody>                
 			</table>
 	</div>
