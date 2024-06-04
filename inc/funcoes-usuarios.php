@@ -30,3 +30,14 @@ function lerUmUsuarios($conexao, $id){
     /* Retornamos um unico array associativo com os dados do usuario selecionado */
     return mysqli_fetch_assoc($resultado);
 }
+
+function atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo){
+    $sql = "UPDATE usuarios SET 
+    nome = '$nome',
+    email = '$email',
+    senha = '$senha',
+    tipo = '$tipo'
+    WHERE id = $id"; // Não esqueça !!!
+
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+}
