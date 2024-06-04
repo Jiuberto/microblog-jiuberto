@@ -7,6 +7,23 @@ $id = $_GET['id'];
 
 /* Executando a função com o id e recuperando os dados do usuário selecionado */
 $dadosUsuario = lerUmUsuarios($conexao, $id);
+
+if(isset($_POST['atualizar'])){
+	$nome = $_POST['nome'];
+	$email = $_POST['email'];
+	$tipo = $_POST['tipo'];
+
+	/* Lógica para tratamento da senha 
+	Se o campo da senha estiver vazio OU se a senha digitada for a mesma Já existente no banco, então significa que o usuario NÃO ALTEROU A SENHA. Portanto, devemos manter a senha existente no banco */
+	if(empty($_POST['senha']) || password_verify($_POST['senha'], $dadosUsuario['senha'])){
+
+		echo "Não vai mudar a senha...";
+	} else {
+
+	/* Caso cobtrário, pegaremos a senha nova digitada e a CODIFICAREMOS ANTES de mandar/salvar no banco. */
+	echo "Vai mudar a senha...";
+	}
+}
 ?>
 
 
@@ -40,8 +57,14 @@ $dadosUsuario = lerUmUsuarios($conexao, $id);
 				<label class="form-label" for="tipo">Tipo:</label>
 				<select class="form-select" name="tipo" id="tipo" required>
 					<option value=""></option>
-					<option value="editor">Editor</option>
-					<option value="admin">Administrador</option>
+
+
+					<option <?php if($dadosUsuario['tipo'] == 'editor') echo 'selected' ?> value="editor">Editor</option>
+
+
+					<option <?php if($dadosUsuario['tipo'] == 'admin') echo 'selected' ?> value="admin">Administrador</option>
+
+
 				</select>
 			</div>
 			
