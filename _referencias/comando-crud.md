@@ -4,7 +4,7 @@
 
 - C: CREATE (INSERT) -> inserir dados
 - R: READ (SELECT)   -> ler/carregar dados
-- U: UPDATE (UPDETE) -> arualizar dados
+- U: UPDATE (UPDETE) -> atualizar dados
 - D: DELETE (DELETE) -> excluir dados
 
 #   Exemplos
@@ -47,7 +47,7 @@ UPDATE usuarios SET tipo = 'editor'
 WHERE id = 1;
 ```
 
-<!-- Obs: nunca esquece de passar, pwelo menos, ua condição para o UPDATE -->
+<!-- Obs: nunca esquessa de passar, pelo menos, uma condição para o UPDATE -->
 
 ### Delete na tabela de usuários
 
