@@ -28,5 +28,5 @@ function lerUmUsuarios($conexao, $id){
     or die(mysqli_error($conexao));
     
     /* Retornamos um unico array associativo com os dados do usuario selecionado */
-    return mysqli_fetch_assoc($resultado)
+    return mysqli_fetch_assoc($resultado);
 }
