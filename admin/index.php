@@ -1,5 +1,6 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+
 ?>
 
 
@@ -17,10 +18,16 @@ require_once "../inc/cabecalho-admin.php";
                 <i class="bi bi-person"></i> <br>
                 Meu perfil
             </a>
+
+            <!-- Se for admin, então mostre o lin abaixo -->
+            <?php if ($_SESSION['tipo'] == "admin") { ?>
+
 			<a class="btn btn-dark bg-gradient btn-lg" href="usuarios.php">
                 <i class="bi bi-people"></i> <br>
                 Gerenciar usuários
             </a>
+
+       <?php } ?>
             <a class="btn btn-dark bg-gradient btn-lg" href="noticias.php">
                 <i class="bi bi-newspaper"></i> <br>
                 Gerenciar notícias
