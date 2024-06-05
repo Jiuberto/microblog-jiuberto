@@ -26,5 +26,21 @@ function VerificaAcesso(){
        // Paramos qualquer outra execução/processamento
        exit; // ou die()
     }
+
 }
+
+function login($id, $nome, $tipo){
+    //Variaveis de sessão
+    $_SESSION['id'] = $id;
+    $_SESSION['nome'] = $nome;
+    $_SESSION['tipo'] = $tipo;
+}
+
+function logout(){
+    session_destroy();
+    header("location:../login.php"); //redirecionamento de tela
+    exit; // ou die();
+}
+
+
 ?>
