@@ -1,5 +1,9 @@
 <?php
 require_once "../inc/funcoes-usuarios.php";
+require_once "../inc/funcoes-sessao.php";
+
+//verificando se o usuario pode acessar essa pagina
+verificarTipo();
 
 //Obter o id que sera excluido
 $id = $_GET['id'];

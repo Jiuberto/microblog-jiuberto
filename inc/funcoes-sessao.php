@@ -42,5 +42,15 @@ function logout(){
     exit; // ou die();
 }
 
+function verificarTipo(){
+    /* Se o tipo do usuario logado na sessão não for admin(os, seja se diferente de admin) */
+    if ($_SESSION['tipo'] != "admin") {
+        //Então redirecione para não autorizado
+        header("location:nao-autorizado.php");
+    }
+
+    
+
+}
 
 ?>

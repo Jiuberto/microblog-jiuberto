@@ -2,6 +2,9 @@
 require_once "../inc/cabecalho-admin.php";
 require_once "../inc/funcoes-usuarios.php";
 
+//verificando se o usuario pode acessar essa pagina
+verificarTipo();
+
 /* <!-- Pegando o valor do parametro id vindo da url --> */
 $id = $_GET['id'];
 

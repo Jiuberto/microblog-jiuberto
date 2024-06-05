@@ -2,6 +2,9 @@
 require_once "../inc/cabecalho-admin.php";
 require_once "../inc/funcoes-usuarios.php";
 
+//verificando se o usuario pode acessar essa pagina
+verificarTipo();
+
 //Chamando a função que carrega/lista/le os usuários
 $listaDeUsuarios = lerUsuarios($conexao);
 ?>
@@ -11,7 +14,9 @@ $listaDeUsuarios = lerUsuarios($conexao);
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Usuários <span class="badge bg-dark">X</span>
+		Usuários <span class="badge bg-dark">
+			<?=count($listaDeUsuarios)?> <!-- contagem de usuarios -->
+		</span>
 		</h2>
 
 		<p class="text-center mt-5">
