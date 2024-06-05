@@ -10,7 +10,7 @@ require_once "../inc/cabecalho-admin.php";
             <?=$_SESSION['nome']?>!
     </h2>
         <p class="fs-5">Você está no <b>painel de controle e administração</b> do
-		site Microblog e seu <b>nível de acesso</b> é <span class="badge bg-dark"> <?=$_POST['tipo']?> </span>.</p>
+		site Microblog e seu <b>nível de acesso</b> é <span class="badge bg-dark"> admin/editor </span>.</p>
         <hr class="my-4">
 
         <div class="d-grid gap-2 d-md-block text-center">
