@@ -3,6 +3,19 @@ require "inc/cabecalho.php";
 require "inc/funcoes-sessao.php"; 
 require "inc/funcoes-usuarios.php"; 
 
+/* Mensagens de feedback */
+if (isset($_GET['campos_obrigatorios'])) {
+	$mensagem = "Prencha os dados";
+}elseif(isset($_GET['dados_incorretos'])){
+	$mensagem = "Tente novamente";
+}elseif (isset($_GET['saiu'])) {
+	$mensagem = "Saiu do sistema";
+}elseif (isset($_GET['acesso_negado'])) {
+	$mensagem = "Voce deve fazer o login";
+}
+
+
+
 if (isset($_POST['entrar'])) {
 	//Validando os campos (se estão vazios)
 	if (empty($_POST['email']) || empty($_POST['senha'])) {
@@ -15,7 +28,24 @@ if (isset($_POST['entrar'])) {
 	$senha = $_POST['senha'];
 
 	/*  1. Buscando no banco de dados, através do email digitado, se existe um usuário cadastrado. */
-	$usuario = buscaUsuario($conexao, $email);
+	$usuario = buscarUsuario($conexao, $email);
+
+	/* 2. Verificação de usuario e senha
+	Se o usuario/email existe no banco e a senha digitada for igual a do banco...
+	*/
+	if ($usuario !== null && password_verify($senha, $usuario['senha'])) {
+		//Então inicie o processo de login.
+		login($usuario['id'], $usuario['nome'], $usuario['tipo']);
+
+		// Redirecione para a index admin
+		header("location:admin/index.php");
+
+		exit;
+	} else {
+		//Senão, senha está errada e não pode entrar no sistema.
+		header("location:login.php?dados_incorretos");
+		exit;
+	}
 }
 ?>
 
@@ -25,9 +55,11 @@ if (isset($_POST['entrar'])) {
 
         <form action="" method="post" id="form-login" name="form-login" class="mx-auto w-50" autocomplete="off">
 
+				<?php if(isset($mensagem)) { ?>
 				<p class="my-2 alert alert-warning text-center">
-					Mensagens de feedback...
-				</p>                
+					<?=$mensagem?>
+				</p>  
+				<?php } ?>              
 
 				<div class="mb-3">
 					<label for="email" class="form-label">E-mail:</label>
