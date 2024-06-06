@@ -45,16 +45,16 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 				<?php foreach($listaDeNoticias as $noticia) {?> 
 					<tr>
 					<td> <?=$noticia["titulo"]?> </td>
-                        <td> <?=$noticia["data"]?> </td>
+                        <td> <?=date("d/m/y h:i", strtotime($noticia['data']))?> </td>
                         <td><?=$noticia["nome"]?></td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
-							href="noticia-atualiza.php">
+							href="noticia-atualiza.php?id=<?=$noticia["id"]?>">
 							<i class="bi bi-pencil"></i> Atualizar
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="noticia-exclui.php?id=<?=$noticia["id"]?>">
+							href="noticia-exclui.php">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
