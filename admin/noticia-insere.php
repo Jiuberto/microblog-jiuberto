@@ -1,5 +1,27 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+require_once "../inc/funcoes-noticias.php";
+
+if (isset($_POST['inserir'])) {
+	$titulo = $_POST['titulo'];
+	$texto = $_POST['texto'];
+	$resumo = $_POST['resumo'];
+
+	/* Obtendo o id do usuário que esta logado e inserindo a noticia. Portanto, a notícia será associada ao usuário devido ao uso de chave estrageira e relacionamento no banco. */
+	$usuarioId = $_SESSION['id'];
+
+	/* Captura dados de arquivos enviados */
+	$imagem = $_FILES['imagem'];
+
+	/* Fazendo upload da imagem para o servidor */
+	upload($imagem);
+
+	/* Enviar os dados para o banco de dados */
+	inserirNoticia($conexao, $titulo, $texto, $resumo, $imagem['name'], $usuarioId);
+
+	header("location:noticias.php");
+
+}
 ?>
 
 
@@ -10,7 +32,8 @@ require_once "../inc/cabecalho-admin.php";
 		Inserir nova notícia
 		</h2>
 				
-		<form autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">            
+		<!-- O atributo enctype como valor indicado é nescessario quando queremos que o formulario aceite o envio/processamento de arquivos de qualquer natureza. -->
+		<form enctype="multipart/form-data" autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">            
 
 			<div class="mb-3">
                 <label class="form-label" for="titulo">Título:</label>
