@@ -2,6 +2,10 @@
 
 require "conecta.php";
 
+function formataData($data){
+    return date("d/m/Y H:i", strtotime($data));
+}
+
 function upload($arquivo)
 {
 
