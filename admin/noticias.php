@@ -45,7 +45,7 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 				<?php foreach($listaDeNoticias as $noticia) {?> 
 					<tr>
 					<td> <?=$noticia["titulo"]?> </td>
-                        <td> <?=date("d/m/y H:i", strtotime($noticia['data']))?> </td>
+                        <td> <?=date("d/m/Y H:i", strtotime($noticia['data']))?> </td>
                         <td><?=$noticia["nome"]?></td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
