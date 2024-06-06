@@ -1,6 +1,18 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+require_once "../inc/funcoes-noticias.php";
+
+//id do usuario logado
+$idUsuario = $_SESSION['id'];
+
+//pegando o tipo do usuario logado
+$tipoUsuario = $_SESSION['tipo'];
+
+ // chamando a função, passando os paramentre e recebemos os dados
+$listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
+
 ?>
+
 
 
 <div class="row">
@@ -30,10 +42,11 @@ require_once "../inc/cabecalho-admin.php";
 
 				<tbody>
 
+				<?php foreach($listaDeNoticias as $noticias) {?> 
 					<tr>
-                        <td> Título da notícia... </td>
-                        <td> 21/12/2112 21:12 </td>
-                        <td> Autor da notícia... </td>
+					<td> <?=$noticias["titulo"]?> </td>
+                        <td> <?=$noticias["data"]?> </td>
+                        <td><?=$noticias["nome"]?></td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
 							href="noticia-atualiza.php">
@@ -41,12 +54,12 @@ require_once "../inc/cabecalho-admin.php";
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="noticia-exclui.php">
+							href="noticia-exclui.php?id=<?=$noticias["id"]?>">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
 					</tr>
-
+<?php } ?>
 				</tbody>                
 			</table>
 	</div>
@@ -57,5 +70,5 @@ require_once "../inc/cabecalho-admin.php";
 
 <?php 
 require_once "../inc/rodape-admin.php";
+				
 ?>
-

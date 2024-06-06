@@ -1,6 +1,9 @@
 <?php
-require "inc/cabecalho.php"; 
+require_once "inc/cabecalho-admin.php";
+
 ?>
+
+
 
 
 <div class="row my-1 mx-md-n1">
