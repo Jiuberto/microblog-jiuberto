@@ -42,11 +42,11 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 
 				<tbody>
 
-				<?php foreach($listaDeNoticias as $noticias) {?> 
+				<?php foreach($listaDeNoticias as $noticia) {?> 
 					<tr>
-					<td> <?=$noticias["titulo"]?> </td>
-                        <td> <?=$noticias["data"]?> </td>
-                        <td><?=$noticias["nome"]?></td>
+					<td> <?=$noticia["titulo"]?> </td>
+                        <td> <?=$noticia["data"]?> </td>
+                        <td><?=$noticia["nome"]?></td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
 							href="noticia-atualiza.php">
@@ -54,7 +54,7 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="noticia-exclui.php?id=<?=$noticias["id"]?>">
+							href="noticia-exclui.php?id=<?=$noticia["id"]?>">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
