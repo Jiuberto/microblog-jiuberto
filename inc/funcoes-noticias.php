@@ -70,8 +70,20 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
-function lerUmaNoticia($conexao)
-{
+function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
+
+    if ($tipoUsuario == 'admin') {
+        // Pode ver qualquer noticia
+        $sql = "SELECT * FROM noticia WHERE id = $idNoticia";
+    } else {
+        // ver somente sua noticia (basta sbaer qual a noticia e o )
+        $sql = "SELECT * FROM noticias WHERE id = $idNoticia AND usuario_id = $idUsuario";
+    }
+
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    return mysqli_fetch_assoc($resultado);
+
 }
 
 function atualizarUmaNoticia($conexao)
