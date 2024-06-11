@@ -2,7 +2,8 @@
 
 require "conecta.php";
 
-function formataData($data){
+function formataData($data)
+{
     return date("d/m/Y H:i", strtotime($data));
 }
 
@@ -42,14 +43,27 @@ function inserirNoticia(/* $conexao, $titulo, $texto, $resumo, $nomeImagem, $usu
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario)
 {
-    $sql = "SELECT
-     noticias.id,
-     noticias.titulo,
-     noticias.data,
-     usuarios.nome
-       FROM noticias JOIN usuarios
-      ON noticias.usuario_id = usuarios.id 
-      ORDER BY data DESC";
+
+    if ($tipoUsuario == 'admin') {
+        //pode ver tudo
+
+        $sql = "SELECT
+    noticias.id,
+    noticias.titulo,
+    noticias.data,
+    usuarios.nome
+      FROM noticias JOIN usuarios
+     ON noticias.usuario_id = usuarios.id 
+     ORDER BY data DESC";
+    } else {
+        //pode ver somente do proprio usuario
+
+        $sql = "SELECT titulo, data, id FROM noticias
+        WHERE usuario_id = $idUsuario
+        ORDER BY data DESC";
+    }
+
+
 
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
