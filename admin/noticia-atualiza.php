@@ -15,6 +15,33 @@ $tipoUsuario = $_SESSION['id'];
 $dadosNoticia = lerUmaNoticia(
     $conexao, $idNoticia, $idUsuario, $tipoUsuario
 );
+
+    if (isset($_POST['atualizar'])) {
+        $titulo = $_POST['titulo'];
+        $texto = $_POST['texto'];
+        $resumo = $_POST['resumo'];
+
+        /*  Lógica para a imagem */
+
+        /* Se o campo "imagem" estiver vazio, entãosignifica que o usuario NÃO QUER trocar de imagem. Neste caso, o sistema vai manter a "imagem existente". */
+
+        if (empty($_FILES['imagem']['name'])) {
+            $Imagem = $_POST['imagem-existente'];
+
+        } else {
+
+        /* Caso contrário, então pegamos a referencia do novo arquivo (nome e extensão) e fazemos o processo de umpload */
+        $Imagem = $_FILES['imagem']['name']; // pegando nome
+        upload($_FILES['imagem']); //fazendo upload/envio
+            
+        }
+
+        atualizarNoticia($conexao, $titulo, $texto, $resumo, $Imagem, $idNoticia, $idUsuario, $tipoUsuario);
+
+        header("location:noticias.php");
+        
+    }
+
 ?>
 
 
@@ -25,7 +52,7 @@ $dadosNoticia = lerUmaNoticia(
             Atualizar dados da notícia
         </h2>
 
-        <form autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
+        <form enctype="multipart/form-data" autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
 
             <div class="mb-3">
                 <label class="form-label" for="titulo">Título:</label>
