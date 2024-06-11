@@ -61,7 +61,7 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="noticia-exclui.php">
+							href="noticia-exclui.php?id=<?=$noticia['id']?>">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>

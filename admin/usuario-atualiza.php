@@ -1,6 +1,7 @@
 <?php
 require_once "../inc/cabecalho-admin.php";
 require_once "../inc/funcoes-usuarios.php";
+require_once
 
 //verificando se o usuario pode acessar essa pagina
 verificarTipo();
