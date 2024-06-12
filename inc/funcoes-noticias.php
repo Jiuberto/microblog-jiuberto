@@ -34,11 +34,11 @@ function upload($arquivo)
     move_uploaded_file($temporario, $destino);
 }
 
-function inserirNoticia(/* $conexao, $titulo, $texto, $resumo, $nomeImagem, $usuarioId */)
+function inserirNoticia( $conexao, $titulo, $texto, $resumo, $nomeImagem, $usuarioId )
 {
-    /* $sql = "INSERT INTO noticias(titulo, texto, resumo, imagem, usuario_id) VALUES ('$titulo', '$texto', '$resumo', '$nomeImagem', '$usuarioId')";
+    $sql = "INSERT INTO noticias(titulo, texto, resumo, imagem, usuario_id) VALUES ('$titulo', '$texto', '$resumo', '$nomeImagem', '$usuarioId')";
 
-    mysqli_query($conexao, $sql) or die(mysqli_error($conexao)); */
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao)); 
 }
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario)
@@ -112,11 +112,13 @@ function excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario)
 {
     if ($tipoUsuario == 'admin') {
         
+        // Pode apagar QUALQUER noticias sabendo o id dela
         $sql = "DELETE FROM noticias WHERE id = $idNoticia"; 
     } else {
         
         $sql = "DELETE FROM noticias WHERE id = $idNoticia AND  usuario_id"; 
     }
     
+    // Pode apagar Somente as proprias noticias sabendo o id dela e do user
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }

@@ -3,7 +3,7 @@ require_once "../inc/funcoes-noticias.php";
 require_once "../inc/funcoes-sessao.php";
 
 //verificando se o usuario pode acessar essa pagina
-verificarTipo();
+VerificaAcesso();
 
 //Obter o id que sera excluido
 $idNoticia = $_GET['id'];
@@ -14,6 +14,6 @@ $tipoUsuario = $_GET['id'];
 excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario);
 
 //Redirecionamento para a página de usuário
-header("location:usuarios.php");
+header("location:noticias.php");
 
 ?>
