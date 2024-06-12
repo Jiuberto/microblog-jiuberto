@@ -122,3 +122,29 @@ function excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario)
     // Pode apagar Somente as proprias noticias sabendo o id dela e do user
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
+
+
+
+/* Funções para as paginas publicas do Microblog:
+index, noticia, resultados
+*/
+
+
+//index.php
+function lerTodasNoticias($conexao){
+    $sql = "SELECT titulo, imagem, resumo, id
+        FROM noticias ORDER BY data DESC";
+        $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+        return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+}
+
+// noticias.php
+function lerNoticiaCompleta($conexao){
+
+}
+
+// resultados.php
+function busca($conexao){
+
+}
