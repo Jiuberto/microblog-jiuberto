@@ -34,11 +34,11 @@ function upload($arquivo)
     move_uploaded_file($temporario, $destino);
 }
 
-function inserirNoticia( $conexao, $titulo, $texto, $resumo, $nomeImagem, $usuarioId )
+function inserirNoticia($conexao, $titulo, $texto, $resumo, $nomeImagem, $usuarioId)
 {
     $sql = "INSERT INTO noticias(titulo, texto, resumo, imagem, usuario_id) VALUES ('$titulo', '$texto', '$resumo', '$nomeImagem', '$usuarioId')";
 
-    mysqli_query($conexao, $sql) or die(mysqli_error($conexao)); 
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario)
@@ -70,7 +70,8 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
-function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
+function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario)
+{
 
     if ($tipoUsuario == 'admin') {
         // Pode ver qualquer noticia
@@ -83,10 +84,10 @@ function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
     return mysqli_fetch_assoc($resultado);
-
 }
 
-function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNoticia, $idUsuario, $tipoUsuario){
+function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNoticia, $idUsuario, $tipoUsuario)
+{
     if ($tipoUsuario == 'admin') {
         /* Pode atualizar qualquer noticia (basta saber qual noticia)*/
         $sql = "UPDATE noticias SET 
@@ -104,21 +105,21 @@ function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNotici
         imagem = '$imagem'
         WHERE id = $idNoticia AND usuario_id = $idUsuario"; // PERIGO
     }
-    
+
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
 
 function excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario)
 {
     if ($tipoUsuario == 'admin') {
-        
+
         // Pode apagar QUALQUER noticias sabendo o id dela
-        $sql = "DELETE FROM noticias WHERE id = $idNoticia"; 
+        $sql = "DELETE FROM noticias WHERE id = $idNoticia";
     } else {
-        
-        $sql = "DELETE FROM noticias WHERE id = $idNoticia AND  usuario_id"; 
+
+        $sql = "DELETE FROM noticias WHERE id = $idNoticia AND  usuario_id";
     }
-    
+
     // Pode apagar Somente as proprias noticias sabendo o id dela e do user
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
@@ -131,16 +132,18 @@ index, noticia, resultados
 
 
 //index.php
-function lerTodasNoticias($conexao){
+function lerTodasNoticias($conexao)
+{
     $sql = "SELECT titulo, imagem, resumo, id
         FROM noticias ORDER BY data DESC";
-        $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
-        return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
 // noticias.php
-function lerNoticiaCompleta($conexao, $id){
+function lerNoticiaCompleta($conexao, $id)
+{
     /* $sql = "SELECT 
     noticias.id,
     noticias.titulo,
@@ -151,15 +154,36 @@ function lerNoticiaCompleta($conexao, $id){
      ON noticias.usuario_id = usuarios.id
       WHERE noticias.id = $id"; */
 
-      $sql = "SELECT                 n.id,                n.data,                n.titulo,                n.texto,                n.imagem,                u.nome            FROM                 noticias n            JOIN                 usuarios u ON n.usuario_id = u.id            WHERE n.id = $id"; // só esta parte que foi customizada";
+    $sql = "SELECT
+    n.id,
+    n.data,
+    n.titulo,
+    n.texto,
+    n.imagem,
+    u.nome
+    FROM noticias n
+     JOIN usuarios u ON n.usuario_id = u.id 
+     WHERE n.id = $id"; // só esta parte que foi customizada";
 
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
     return mysqli_fetch_assoc($resultado);
-
 }
 
 // resultados.php
-function busca($conexao){
+function busca($conexao, $termoBuscado){
+    //Atenção ao uso do operador LIKE em vez de = e do operador coringa %
 
+    //Ambos são nescessários para que a busca seja mais abrangente, permitindo que o terno esteja em qualquer lugar dentro das colunas.
+
+    $sql = "SELECT id, data, titulo, resumo FROM noticias
+    WHERE
+     titulo LIKE '%$termoBuscado%' OR
+     resumo LIKE '%$termoBuscado%'OR
+     texto LIKE '%$termoBuscado%'
+    ORDER BY data DESC";
+
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
