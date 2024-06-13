@@ -8,7 +8,7 @@ require_once "../inc/funcoes-usuarios.php";
 verificarTipo();
 
 /* <!-- Pegando o valor do parametro id vindo da url --> */
-$id = $_GET['id'];
+$id = (int)$_GET['id'];
 
 /* Executando a função com o id e recuperando os dados do usuário selecionado */
 $dadosUsuario = lerUmUsuarios($conexao, $id);

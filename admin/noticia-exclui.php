@@ -6,9 +6,9 @@ require_once "../inc/funcoes-sessao.php";
 VerificaAcesso();
 
 //Obter o id que sera excluido
-$idNoticia = $_GET['id'];
-$idUsuario = $_GET['id'];
-$tipoUsuario = $_GET['id'];
+$idNoticia = (int)$_GET['id'];
+$idUsuario = (int)$_GET['id'];
+$tipoUsuario = (int)$_GET['id'];
 
 // Chamar/executar a função que irá fazer o DELETE
 excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario);

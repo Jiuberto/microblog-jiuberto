@@ -3,7 +3,7 @@ require "inc/cabecalho.php";
 require_once "inc/funcoes-noticias.php";
 
 //Capturando via URL/GET o que foi digitado no campo busca
-$termoBuscado = $_GET['busca'];
+$termoBuscado = mysqli_real_escape_string($conexao, htmlspecialchars($_GET['busca']));
 
 //Executar função de busca
 $dadosDaBusca = busca($conexao, $termoBuscado);

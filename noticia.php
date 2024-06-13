@@ -2,7 +2,8 @@
 require_once "inc/cabecalho.php";
 require_once "inc/funcoes-noticias.php";
 
-$id = $_GET['id'];
+/* Aplicamos uma conversão/casting forçada para valor inteiro, portanto se não for um numero valido/existente, o comando não executado e os erros não expoem os detalhes do banco/função/comendo. */
+$id = (int)$_GET['id'];
 $dadosNoticia = lerNoticiaCompleta($conexao, $id);
 
 ?>

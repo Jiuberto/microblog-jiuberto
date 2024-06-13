@@ -3,13 +3,13 @@ require_once "../inc/cabecalho-admin.php";
 require_once "../inc/funcoes-noticias.php";
 
 // Capturando o id da noticia
-$idNoticia = $_GET['id'];
+$idNoticia = (int)$_GET['id'];
 
 // Capturando o id do usuário logado
-$idUsuario = $_SESSION['id'];
+$idUsuario = (int)$_SESSION['id'];
 
 // Capturando o tipo do usuário logado
-$tipoUsuario = $_SESSION['id'];
+$tipoUsuario = (int)$_SESSION['id'];
 
 // Chamando a função e recuperar os dados da noticias
 $dadosNoticia = lerUmaNoticia(

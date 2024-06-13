@@ -6,7 +6,7 @@ require_once "../inc/funcoes-sessao.php";
 verificarTipo();
 
 //Obter o id que sera excluido
-$id = $_GET['id'];
+$id = (int)$_GET['id'];
 
 // Chamar/executar a função que irá fazer o DELETE
 excluirUsuario($conexao, $id);
