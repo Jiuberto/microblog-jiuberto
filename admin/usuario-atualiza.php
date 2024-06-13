@@ -11,7 +11,7 @@ verificarTipo();
 $id = (int)$_GET['id'];
 
 /* Executando a função com o id e recuperando os dados do usuário selecionado */
-$dadosUsuario = lerUmUsuarios($conexao, $id);
+$dadosUsuario = lerUmUsuario($conexao, $id);
 
 if (isset($_POST['atualizar'])) {
 	$nome = htmlspecialchars($_POST['nome']);
@@ -38,7 +38,7 @@ if (isset($_POST['atualizar'])) {
 }
 ?>
 
-
+<pre><?=var_dump($dadosUsuario)?></pre>
 
 
 <div class="row">

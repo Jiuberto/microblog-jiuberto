@@ -22,7 +22,7 @@ function lerUsuarios($conexao){
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
-function lerUmUsuarios($conexao, $id){
+function lerUmUsuario($conexao, $id){
     $sql = "SELECT * FROM usuarios WHERE id = $id";
     $resultado = mysqli_query($conexao, $sql)
     or die(mysqli_error($conexao));
