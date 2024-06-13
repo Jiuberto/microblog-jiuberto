@@ -7,6 +7,26 @@ $idUsuario = $_SESSION['id'];
 
 $perfil = lerUmUsuario($conexao, $idUsuario);
 
+if (isset($_POST['atualizar'])) {
+	$nome = $_POST['nome'];
+	$nome = $_POST['email'];
+
+	$tipoUsuario = $_SESSION['tipo'];
+
+	if (empty($_POST['senha'])) {
+
+		//Manter a mesma senha (copiamos ela para uma variavel)
+		$senha = $dadosUsuario['senha'];
+	} else {
+
+		/* Caso cobtrário, pegaremos a senha nova digitada e a CODIFICAREMOS ANTES de mandar/salvar no banco. */
+		$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+	}
+
+	atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
+	header("Location: index.php");
+    exit;
+}
 
 ?>
 
