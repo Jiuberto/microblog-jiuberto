@@ -5,7 +5,7 @@ require_once "../inc/funcoes-usuarios.php";
 
 $idUsuario = $_SESSION['id'];
 
-$perfil = lerUmUsuario($conexao, $idUsuario);
+$perfil = lerUmUsuarios($conexao, $idUsuario);
 
 if (isset($_POST['atualizar'])) {
 	$nome = $_POST['nome'];
