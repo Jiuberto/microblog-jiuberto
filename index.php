@@ -1,40 +1,43 @@
 <?php 
-require "inc/cabecalho.php"; 
-?>  
+require_once "../inc/cabecalho-admin.php";
+
+?>
 
 
-<div class="row my-1 mx-md-n1">
+<article class="p-5 my-4 rounded-3 bg-white shadow">
+    <div class="container-fluid py-1">        
+        <h2 class="display-4">Olá 
+            <?=$_SESSION['nome']?>!
+    </h2>
+        <p class="fs-5">Você está no <b>painel de controle e administração</b> do
+		site Microblog e seu <b>nível de acesso</b> é <span class="badge bg-dark"> <?=$_SESSION['tipo']?> </span>.</p>
+        <hr class="my-4">
 
-    <!-- INÍCIO Card -->
-		<div class="col-md-6 my-1 px-md-1">
-            <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="imagens/abstrato.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
-                    </div>
-                </a>
-            </article>
-		</div>
-		<!-- FIM Card -->
+        <div class="d-grid gap-2 d-md-block text-center">
+            <a class="btn btn-dark bg-gradient btn-lg" href="meu-perfil.php">
+                <i class="bi bi-person"></i> <br>
+                Meu perfil
+            </a>
 
-        <!-- INÍCIO Card -->
-		<div class="col-md-6 my-1 px-md-1">
-            <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="imagens/conversa.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
-                    </div>
-                </a>
-            </article>
-		</div>
-		<!-- FIM Card -->
-</div>        
+            <!-- Se for admin, então mostre o lin abaixo -->
+            <?php if ($_SESSION['tipo'] == "admin") { ?>
+
+			<a class="btn btn-dark bg-gradient btn-lg" href="usuarios.php">
+                <i class="bi bi-people"></i> <br>
+                Gerenciar usuários
+            </a>
+
+       <?php } ?>
+            <a class="btn btn-dark bg-gradient btn-lg" href="noticias.php">
+                <i class="bi bi-newspaper"></i> <br>
+                Gerenciar notícias
+            </a>
+        </div>
+    </div>
+</article>
+
 
 <?php 
-require_once "inc/rodape.php";
+require_once "../inc/rodape-admin.php";
 ?>
 

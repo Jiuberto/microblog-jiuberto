@@ -19,3 +19,4 @@ mysqli_set_charset($conexao, "utf8");
 } else {
     echo "Conect";
 } */
+?>;

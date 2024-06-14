@@ -1,4 +1,11 @@
 <?php
+require_once "funcoes-sessao.php";
+VerificaAcesso();
+
+/*  Se o parametro de URL 'sair' existir, ou seja, quando o link for clicado, então execute a função logout */
+if (isset($_GET['sair'])) logout();
+
+
 // Guardando o nome da página atual
 $pagina = basename($_SERVER['PHP_SELF']);
 ?>
@@ -36,11 +43,13 @@ $pagina = basename($_SERVER['PHP_SELF']);
             <li class="nav-item">
                 <a class="nav-link" href="meu-perfil.php">Meu perfil</a>
             </li>
-                       
+               
+            <?php if ($_SESSION['tipo'] == "admin") { ?>
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuários</a>
             </li>
             
+            <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="noticias.php">Notícias</a>
             </li>
@@ -49,7 +58,7 @@ $pagina = basename($_SERVER['PHP_SELF']);
                 <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold" href=""> <i class="bi bi-x-circle"></i> Sair</a>
+                <a class="nav-link fw-bold" href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
             </li>
         </ul>
 

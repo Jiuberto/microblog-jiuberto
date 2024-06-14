@@ -8,15 +8,15 @@ require_once "../inc/funcoes-usuarios.php";
 verificarTipo();
 
 /* <!-- Pegando o valor do parametro id vindo da url --> */
-$id = $_GET['id'];
+$id = (int)$_GET['id'];
 
 /* Executando a função com o id e recuperando os dados do usuário selecionado */
-$dadosUsuario = lerUmUsuarios($conexao, $id);
+$dadosUsuario = lerUmUsuario($conexao, $id);
 
 if (isset($_POST['atualizar'])) {
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$tipo = $_POST['tipo'];
+	$nome = htmlspecialchars($_POST['nome']);
+	$email = htmlspecialchars($_POST['email']);
+	$tipo = htmlspecialchars($_POST['tipo']);
 
 	/* Lógica para tratamento da senha 
 	Se o campo da senha estiver vazio OU se a senha digitada for a mesma Já existente no banco, então significa que o usuario NÃO ALTEROU A SENHA. Portanto, devemos manter a senha existente no banco */
@@ -38,7 +38,7 @@ if (isset($_POST['atualizar'])) {
 }
 ?>
 
-
+<pre><?=var_dump($dadosUsuario)?></pre>
 
 
 <div class="row">

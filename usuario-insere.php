@@ -10,9 +10,9 @@ verificarTipo();
 //Detectando se o botão inserir foi acionar
  if(isset($_POST['inserir'])){
 	//Capturar os dados digitais
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$tipo = $_POST['tipo'];
+	$nome = htmlspecialchars($_POST['nome']);
+	$email = htmlspecialchars($_POST['email']);
+	$tipo = htmlspecialchars($_POST['tipo']);
 
 	// Capturando a senha e a condificando
 	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
