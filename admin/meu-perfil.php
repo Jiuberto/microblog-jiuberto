@@ -30,7 +30,6 @@ if (isset($_POST['atualizar'])) {
 
 ?>
 
-<pre><?=var_dump($perfil)?></pre>
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
