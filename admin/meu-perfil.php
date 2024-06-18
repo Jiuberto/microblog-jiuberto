@@ -32,7 +32,7 @@ if (isset($_POST['atualizar'])) {
     }
 
     atualizarUsuario($conexao, $idUsuario, $nome, $email, $senha, $tipoUsuario);
-    header("Location: usuarios.php");
+    header("Location: index.php");
     exit;
 }
 ?>
