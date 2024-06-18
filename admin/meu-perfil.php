@@ -15,7 +15,7 @@ require_once "../inc/funcoes-usuarios.php";
 
 $idUsuario = $_SESSION['id'];
 
-$perfil = lerUmUsuario($conexao, $idUsuario);
+$perfil = lerUmUsuarios($conexao, $idUsuario);
 
 if (isset($_POST['atualizar'])) {
     $nome = $_POST['nome'];
@@ -37,7 +37,10 @@ if (isset($_POST['atualizar'])) {
 }
 ?>
 
+<<<<<<< HEAD
 <pre><?= var_dump($perfil) ?></pre>
+=======
+>>>>>>> 3bee9f0222b96335542ef5979f4a5c7d2ce0b8c3
 
 <div class="row">
     <article class="col-12 bg-white rounded shadow my-1 py-4">
