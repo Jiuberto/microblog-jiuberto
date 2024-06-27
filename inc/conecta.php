@@ -3,7 +3,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "micriblog_jiuberto";
+$banco = "lemel";
 
 // Função para conexão com o servidor do banco de dados
 $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
